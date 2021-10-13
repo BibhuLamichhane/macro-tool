@@ -32,9 +32,27 @@ def not_pressed(key):
                 return False
             else:
                 return True
-command = {
-    "'v'" : launch('valorant'),
-}
+
+def macros(command):
+    match command:
+        case "'v'":
+            launch('valorant')
+        case "'c'":
+            print('auto clicker start')
+            while not_pressed("'s'"):
+                mC.press(mouse.Button.left)
+                mC.release(mouse.Button.left)
+                print('auto cliker stopped')
+        case "'u'":
+            launch("utorrent")
+        case "'p'":
+            launch("photoshop")
+        case "'x'":
+            pass
+
+
+
+
 # The event listener will be running in this block
 with keyboard.Events() as events:
     for event in events:
@@ -47,22 +65,6 @@ with keyboard.Events() as events:
                 if _event is None:
                     print('no command assigned')
                 else:
-                    match str(_event.key):
-                        case "'v'":
-                            launch('valorant')
-                        case "'c'":
-                            print('auto clicker start')
-                            while not_pressed("'s'"):
-                                mC.press(mouse.Button.left)
-                                mC.release(mouse.Button.left)
-                            print('auto cliker stopped')
-                        case "'u'":
-                            launch("utorrent")
-                    
-
+                    macros(str(_event.key))
         else:
-            # print('Received event {}'.format(event))
-            pass
-
-
-
+            pass     
