@@ -11,7 +11,7 @@ end = False
 
 class m:
     def on_move(self, x, y):
-        f.write(f'move,{x} {y}')
+        f.write(f'move,{x} {y}\n')
 
     def on_click(self, x, y, button, pressed):
         global t
@@ -26,7 +26,7 @@ class m:
             return False
 
     def on_scroll(self, x, y, dx, dy):
-        f.write(f'scroll,{x} {y},{dx} {dy}')
+        f.write(f'scroll,{x} {y},{dx} {dy}\n')
 
     def start(self):
         # Collect events until released
