@@ -5,7 +5,7 @@ import time
 kC = keyboard.Controller()
 mC = mouse.Controller()
 
-f = open('logs1.txt', 'r')
+f = open(f'logs/{input("enter date")}.txt', 'r')
 d = f.readlines()
 
 buttons = {
@@ -17,7 +17,7 @@ keys = {
     'Key.space' : keyboard.Key.space
 }
 
-time.sleep(10)
+time.sleep(4)
 print('start')
 for i in range(len(d)):
     curr = d[i].strip()
@@ -33,6 +33,14 @@ for i in range(len(d)):
     elif 'Key' in curr:
         kC.press(keys[curr])
         kC.release(keys[curr])
+    elif 'move' in curr:
+        x, y = curr.split(',')[-1].split()
+        mC.position = (int(x), int(y)) 
+    elif 'scroll' in curr:
+        x, y = curr.split(',')[1].split()
+        dx, dy = curr.split(',')[-1].split()
+        mC.position = (int(x), int(y))
+        mC.scroll = (dx, dy)
     else:
         kC.press(curr[1:-1])
         kC.release(curr[1:-1])

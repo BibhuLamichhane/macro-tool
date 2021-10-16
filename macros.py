@@ -25,6 +25,7 @@ def key_pressed(t):
     with keyboard.Events() as events:
         return events.get(t)
 
+
 def not_pressed(key):
     with keyboard.Events() as events:
         for event in events:
@@ -32,6 +33,7 @@ def not_pressed(key):
                 return False
             else:
                 return True
+
 
 def macros(command):
     match command:
@@ -42,23 +44,19 @@ def macros(command):
             while not_pressed("'s'"):
                 mC.press(mouse.Button.left)
                 mC.release(mouse.Button.left)
-                print('auto cliker stopped')
+            print('auto cliker stopped')
         case "'u'":
             launch("utorrent")
         case "'p'":
             launch("photoshop")
-        case "'x'":
-            pass
-
-
-
+            
 
 # The event listener will be running in this block
 with keyboard.Events() as events:
     for event in events:
         if event.key == keyboard.Key.end:
             break
-        elif event.key == keyboard.Key.f12:
+        elif event.key == keyboard.Key.f10:
             with keyboard.Events() as _events:
                 # Block at most one second
                 _event = key_pressed(2)

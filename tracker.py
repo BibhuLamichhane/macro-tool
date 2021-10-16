@@ -3,17 +3,17 @@ from pynput import keyboard
 import time
 import threading
 import datetime
-date = f'{str(datetime.date.today().day)} - {str(datetime.date.today().month)} - {str(datetime.date.today().year)}'
+date = f'{str(datetime.date.today().day)}-{str(datetime.date.today().month)}-{str(datetime.date.today().year)}'
 f = open(f'logs/{date}.txt', 'a+')
 g = open(f'logs/{date}(without pause).txt', 'a+')
 end = False
 
-class m:
-    def on_move(self, x, y): #not imp
-        # print(f'Pointer moved to {x}, {y}')
-        pass
 
-    def on_click(self, x, y, button, pressed): #only store this
+class m:
+    def on_move(self, x, y):
+        f.write(f'move,{x} {y}')
+
+    def on_click(self, x, y, button, pressed):
         global t
         t2 = time.time()
         f.write(f'pause {t2-t}\n')
@@ -25,11 +25,8 @@ class m:
             # Stop listener
             return False
 
-    def on_scroll(self, x, y, dx, dy): #not imp
-        # print('Scrolled {0} at {1}'.format(
-        #     'down' if dy < 0 else 'up',
-        #     (x, y)))
-        pass
+    def on_scroll(self, x, y, dx, dy):
+        f.write(f'scroll,{x} {y},{dx} {dy}')
 
     def start(self):
         # Collect events until released
@@ -71,7 +68,8 @@ class k:
                 on_release=self.on_release) as listener:
             listener.join()
 
-time.sleep(10)
+
+# time.sleep(10)
 t = time.time()
 print('start')
 a = k()
