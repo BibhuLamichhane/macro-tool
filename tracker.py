@@ -69,7 +69,7 @@ class k:
             listener.join()
 
 
-# time.sleep(10)
+time.sleep(10)
 t = time.time()
 print('start')
 a = k()
