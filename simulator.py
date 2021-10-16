@@ -17,7 +17,7 @@ keys = {
     'Key.space' : keyboard.Key.space
 }
 
-time.sleep(4)
+# time.sleep(4)
 print('start')
 for i in range(len(d)):
     curr = d[i].strip()
@@ -35,7 +35,9 @@ for i in range(len(d)):
         kC.release(keys[curr])
     elif 'move' in curr:
         x, y = curr.split(',')[-1].split()
+        print(x, y)
         mC.position = (int(x), int(y)) 
+        time.sleep(0.02)
     elif 'scroll' in curr:
         x, y = curr.split(',')[1].split()
         dx, dy = curr.split(',')[-1].split()

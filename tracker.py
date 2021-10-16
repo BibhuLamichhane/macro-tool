@@ -11,6 +11,10 @@ end = False
 
 class m:
     def on_move(self, x, y):
+        global t
+        t2 = time.time()
+        f.write(f'pause {t2-t}\n')
+        t = time.time()
         f.write(f'move,{x} {y}\n')
 
     def on_click(self, x, y, button, pressed):
@@ -26,6 +30,10 @@ class m:
             return False
 
     def on_scroll(self, x, y, dx, dy):
+        global t
+        t2 = time.time()
+        f.write(f'pause {t2-t}\n')
+        t = time.time()
         f.write(f'scroll,{x} {y},{dx} {dy}\n')
 
     def start(self):
@@ -69,7 +77,7 @@ class k:
             listener.join()
 
 
-time.sleep(10)
+time.sleep(5)
 t = time.time()
 print('start')
 a = k()
