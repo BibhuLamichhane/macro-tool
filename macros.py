@@ -41,7 +41,7 @@ def macros(command):
             launch('valorant')
         case "'c'":
             print('auto clicker start')
-            while not_pressed("'s'"):
+            while not_pressed("'g'"):
                 mC.press(mouse.Button.left)
                 mC.release(mouse.Button.left)
             print('auto cliker stopped')
@@ -49,7 +49,8 @@ def macros(command):
             launch("utorrent")
         case "'p'":
             launch("photoshop")
-            
+        case "'r'":
+            pass
 
 # The event listener will be running in this block
 with keyboard.Events() as events:
